@@ -140,6 +140,34 @@
   }
 
   /* --------------------------------------------------------------------------
+     Section Dividers — inject decorative heraldic rule after each section heading
+     -------------------------------------------------------------------------- */
+  function initSectionDividers() {
+    document.querySelectorAll('.section-header h2').forEach(function (h2) {
+      const divider = document.createElement('div');
+      divider.className = 'section-divider';
+      divider.setAttribute('aria-hidden', 'true');
+      divider.textContent = '◆';
+      h2.insertAdjacentElement('afterend', divider);
+    });
+  }
+
+  /* --------------------------------------------------------------------------
+     Hero Rules — inject 40px gold rule below hero headlines
+     -------------------------------------------------------------------------- */
+  function initHeroRules() {
+    var selectors = ['.hero__headline', '.page-hero h1'];
+    selectors.forEach(function (selector) {
+      document.querySelectorAll(selector).forEach(function (el) {
+        var rule = document.createElement('div');
+        rule.className = 'hero__rule';
+        rule.setAttribute('aria-hidden', 'true');
+        el.insertAdjacentElement('afterend', rule);
+      });
+    });
+  }
+
+  /* --------------------------------------------------------------------------
      Scroll reveal (lightweight, no IntersectionObserver polyfill needed)
      -------------------------------------------------------------------------- */
   function initScrollReveal() {
@@ -169,6 +197,8 @@
      Init
      -------------------------------------------------------------------------- */
   document.addEventListener('DOMContentLoaded', function () {
+    initSectionDividers();
+    initHeroRules();
     initHamburger();
     initActiveNav();
     initScrollTop();
