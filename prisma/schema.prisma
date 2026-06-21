@@ -137,3 +137,11 @@ model TeamInvite {
 
   owner User @relation("InviteOwner", fields: [ownerId], references: [id], onDelete: Cascade)
 }
+
+model NewsletterSubscriber {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  name        String?
+  subscribedAt DateTime @default(now())
+  confirmed   Boolean  @default(false)
+}

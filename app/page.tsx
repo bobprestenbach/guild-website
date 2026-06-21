@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import SectionHeader from '@/components/SectionHeader'
+import NewsletterForm from '@/components/NewsletterForm'
 
 export default function HomePage() {
   return (
@@ -177,6 +178,21 @@ export default function HomePage() {
                   <div className="testimonial-card__role">Hotel Operations Manager</div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter */}
+      <section className="newsletter-section section" aria-labelledby="newsletter-heading">
+        <div className="container">
+          <div className="newsletter-section__inner">
+            <div className="newsletter-section__copy">
+              <h2 id="newsletter-heading">Stay in the Loop</h2>
+              <p>Get practical hospitality insights, new resource announcements, and Guild updates — delivered free to your inbox. No fluff, just signal.</p>
+            </div>
+            <div className="newsletter-section__form">
+              <NewsletterForm />
             </div>
           </div>
         </div>

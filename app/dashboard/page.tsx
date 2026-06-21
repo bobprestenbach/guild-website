@@ -7,6 +7,7 @@ import { COURSES } from '@/lib/courses'
 import { prisma } from '@/lib/prisma'
 import TierBadge from '@/components/TierBadge'
 import UpgradePrompt from '@/components/UpgradePrompt'
+import OnboardingChecklist from '@/components/OnboardingChecklist'
 
 export const metadata: Metadata = { title: 'Dashboard' }
 
@@ -18,13 +19,22 @@ export default async function DashboardPage({
   const session = await auth()
   if (!session?.user?.id) redirect('/signin')
 
-  const [tier, progressRecords] = await Promise.all([
+  const [tier, progressRecords, userRecord] = await Promise.all([
     getEffectiveTier(session.user.id),
     prisma.courseProgress.findMany({
       where: { userId: session.user.id },
       select: { courseId: true, lessonId: true },
     }),
+    prisma.user.findUnique({
+      where: { id: session.user.id },
+      select: { createdAt: true },
+    }),
   ])
+
+  const accountAgeDays = userRecord
+    ? Math.floor((Date.now() - userRecord.createdAt.getTime()) / 86400000)
+    : 999
+  const isNewMember = accountAgeDays <= 14
 
   const params = await searchParams
   const showSuccess = params.checkout === 'success'
@@ -61,6 +71,8 @@ export default async function DashboardPage({
       </div>
 
       <UpgradePrompt currentTier={tier} />
+
+      {isNewMember && <OnboardingChecklist />}
 
       <div className="dash-grid">
         <div className="dash-card">
