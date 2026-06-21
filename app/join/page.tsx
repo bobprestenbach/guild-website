@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import SectionHeader from '@/components/SectionHeader'
 import FAQAccordion from '@/components/FAQAccordion'
+import PricingButton from '@/components/PricingButton'
 
 export const metadata: Metadata = {
   title: 'Join the Guild',
@@ -86,7 +87,7 @@ export default function JoinPage() {
                   Access to free downloadable templates
                 </li>
               </ul>
-              <a href="https://www.skool.com/hospitality-guild" className="btn btn--outline-navy" target="_blank" rel="noopener noreferrer">Join Free</a>
+              <PricingButton tier="EXPLORER" label="Join Free" className="btn--outline-navy" />
             </div>
 
             {/* Member Tier */}
@@ -130,7 +131,7 @@ export default function JoinPage() {
                   Guild certifications on course completion
                 </li>
               </ul>
-              <a href="https://www.skool.com/hospitality-guild" className="btn btn--primary" target="_blank" rel="noopener noreferrer">Join Now</a>
+              <PricingButton tier="MEMBER" label="Join Now — $29/mo" className="btn--primary" />
             </div>
 
             {/* Business Tier */}
@@ -169,7 +170,7 @@ export default function JoinPage() {
                   Early access to new courses &amp; features
                 </li>
               </ul>
-              <a href="https://www.skool.com/hospitality-guild" className="btn btn--outline-navy" target="_blank" rel="noopener noreferrer">Get Started</a>
+              <PricingButton tier="BUSINESS" label="Get Started — $99/mo" className="btn--outline-navy" />
             </div>
 
           </div>
@@ -204,7 +205,7 @@ export default function JoinPage() {
           <h2 id="join-cta-heading">The Industry Is Moving Forward. Are You?</h2>
           <p>Join hundreds of hospitality managers who are already building better teams, running better operations, and delivering better guest experiences.</p>
           <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="https://www.skool.com/hospitality-guild" className="btn btn--primary btn--lg" target="_blank" rel="noopener noreferrer">Join the Guild Today</a>
+            <PricingButton tier="MEMBER" label="Join the Guild Today" className="btn--primary btn--lg" />
             <Link href="/community" className="btn btn--secondary btn--lg">See What&apos;s Inside</Link>
           </div>
         </div>
