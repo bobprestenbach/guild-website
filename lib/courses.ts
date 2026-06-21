@@ -8,6 +8,7 @@ export interface Lesson {
   objectives: string[]
   keyPoints: string[]
   requiredTier: EffectiveTier
+  videoId?: string
 }
 
 export interface Course {

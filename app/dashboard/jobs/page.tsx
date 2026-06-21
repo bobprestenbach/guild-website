@@ -36,7 +36,7 @@ export default async function DashboardJobsPage() {
 
   return (
     <>
-      <div className="dash-page-header">
+      <div className="dash-page-header dash-page-header--flex">
         <div>
           <h1>Job Board</h1>
           <p>Hospitality roles posted by Guild members.</p>

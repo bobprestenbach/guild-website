@@ -3,6 +3,7 @@ import { auth } from '@/auth'
 import { redirect } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import { getEffectiveTier } from '@/lib/subscriptions'
+import { COURSES } from '@/lib/courses'
 import Link from 'next/link'
 import InviteForm from './InviteForm'
 import RemoveMemberButton from './RemoveMemberButton'
@@ -44,6 +45,21 @@ export default async function TeamPage() {
       orderBy: { createdAt: 'desc' },
     }),
   ])
+
+  const teamIds = [session.user.id, ...seats.map(s => s.memberId)]
+  const allProgress = await prisma.courseProgress.groupBy({
+    by: ['userId', 'courseId'],
+    where: { userId: { in: teamIds } },
+    _count: { lessonId: true },
+  })
+
+  const progressMap: Record<string, Record<string, number>> = {}
+  for (const p of allProgress) {
+    if (!progressMap[p.userId]) progressMap[p.userId] = {}
+    progressMap[p.userId][p.courseId] = p._count.lessonId
+  }
+
+  const availableCourses = COURSES.filter(c => c.status === 'available')
 
   const totalSeats = 5
   const usedSeats = seats.length + 1
@@ -142,6 +158,70 @@ export default async function TeamPage() {
                 </span>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {availableCourses.length > 0 && teamIds.length > 1 && (
+        <div className="settings-card" style={{ marginBottom: '24px' }}>
+          <div className="settings-card__header">
+            <h2 className="settings-card__title">Team Training Progress</h2>
+          </div>
+          <div style={{ overflowX: 'auto' }}>
+            <table className="progress-table">
+              <thead>
+                <tr>
+                  <th className="progress-table__member-col">Member</th>
+                  {availableCourses.map(c => (
+                    <th key={c.id} className="progress-table__course-col" title={c.title}>
+                      {c.icon} <span>{c.title.split(' ').slice(0, 3).join(' ')}</span>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {teamIds.map(uid => {
+                  const isOwner = uid === session.user.id
+                  const seat = seats.find(s => s.memberId === uid)
+                  const memberData = isOwner
+                    ? { name: session.user.name, email: session.user.email, image: session.user.image }
+                    : seat?.member ?? null
+                  if (!memberData) return null
+                  const initials = (memberData.name ?? 'U').split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()
+                  return (
+                    <tr key={uid} className="progress-table__row">
+                      <td className="progress-table__member">
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                          <div className="team-member-row__avatar" style={{ width: 28, height: 28, fontSize: '0.72rem' }}>
+                            {memberData.image ? <img src={memberData.image} alt={memberData.name ?? ''} /> : initials}
+                          </div>
+                          <span style={{ fontSize: '0.88rem', fontWeight: 500 }}>{memberData.name ?? memberData.email}</span>
+                        </div>
+                      </td>
+                      {availableCourses.map(c => {
+                        const done = progressMap[uid]?.[c.id] ?? 0
+                        const total = c.lessons.length
+                        const pct = total > 0 ? Math.round((done / total) * 100) : 0
+                        return (
+                          <td key={c.id} className="progress-table__cell">
+                            {done === total && total > 0 ? (
+                              <span className="progress-table__complete">✓</span>
+                            ) : (
+                              <div>
+                                <div className="progress-table__bar-track">
+                                  <div className="progress-table__bar" style={{ width: `${pct}%` }} />
+                                </div>
+                                <span className="progress-table__label">{done}/{total}</span>
+                              </div>
+                            )}
+                          </td>
+                        )
+                      })}
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
           </div>
         </div>
       )}

@@ -16,8 +16,10 @@ interface NavLink {
 const navLinks: NavLink[] = [
   { href: '/dashboard', label: 'Home', icon: '🏠' },
   { href: '/dashboard/training', label: 'Training', icon: '🎓' },
+  { href: '/dashboard/webinars', label: 'Webinars', icon: '📅' },
   { href: '/dashboard/resources', label: 'Resources', icon: '📁' },
   { href: '/dashboard/jobs', label: 'Jobs', icon: '💼' },
+  { href: '/dashboard/partners', label: 'Discounts', icon: '🏷️' },
   { href: '/dashboard/community', label: 'Community', icon: '💬' },
   { href: '/dashboard/team', label: 'Team', icon: '👥', tiersOnly: ['BUSINESS'] },
   { href: '/dashboard/settings', label: 'Settings', icon: '⚙️' },

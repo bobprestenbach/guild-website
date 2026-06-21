@@ -6,6 +6,7 @@ import { getEffectiveTier, tierCanAccess } from '@/lib/subscriptions'
 import { getCourse } from '@/lib/courses'
 import { prisma } from '@/lib/prisma'
 import LessonCompleteButton from './LessonCompleteButton'
+import LessonVideo from '@/components/LessonVideo'
 
 interface Props {
   params: Promise<{ courseId: string }>
@@ -54,7 +55,7 @@ export default async function CoursePage({ params }: Props) {
           <h3 className="dash-card__title">Coming Soon</h3>
           <p className="dash-card__text">
             This course is in development. Guild members will be notified as soon as it launches.
-            Live workshops on this topic are available monthly.
+            Live workshops on this topic are available monthly — check the Webinars section.
           </p>
           <Link href="/dashboard/training" className="dash-card__link">← Back to Training</Link>
         </div>
@@ -84,6 +85,7 @@ export default async function CoursePage({ params }: Props) {
   const completed = completedSet.size
   const total = course.lessons.length
   const progress = Math.round((completed / total) * 100)
+  const isCourseComplete = completed === total && total > 0
 
   return (
     <>
@@ -98,25 +100,27 @@ export default async function CoursePage({ params }: Props) {
         <p>{course.description}</p>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: '24px', alignItems: 'start' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: '24px', alignItems: 'start' }}>
 
-        {/* Lesson viewer — show first unlocked lesson or first lesson */}
+        {/* Lesson content */}
         <div>
           {course.lessons.map((lesson, idx) => (
             <div key={lesson.id} className="lesson-viewer__section" style={{ marginBottom: '16px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px', flexWrap: 'wrap', gap: '8px' }}>
                 <h3 style={{ margin: 0, fontFamily: 'var(--font-display)', fontSize: '1.1rem', color: 'var(--primary-dark)' }}>
                   Lesson {idx + 1}: {lesson.title}
                 </h3>
-                <span style={{ fontSize: '0.8rem', color: 'var(--text-light)' }}>{lesson.duration}</span>
+                <span style={{ fontSize: '0.8rem', color: 'var(--text-light)', flexShrink: 0 }}>{lesson.duration}</span>
               </div>
 
-              <div className="lesson-viewer__video">
-                <div className="lesson-viewer__video-icon">▶️</div>
-                <div className="lesson-viewer__video-text">Video content coming in Phase 2</div>
-              </div>
+              <LessonVideo
+                videoId={lesson.videoId}
+                courseId={course.id}
+                lessonId={lesson.id}
+                completed={completedSet.has(lesson.id)}
+              />
 
-              <p style={{ fontSize: '0.92rem', color: 'var(--text)', marginBottom: '20px' }}>{lesson.description}</p>
+              <p style={{ fontSize: '0.92rem', color: 'var(--text)', marginBottom: '20px', lineHeight: 1.65 }}>{lesson.description}</p>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '20px' }}>
                 <div>
@@ -146,16 +150,26 @@ export default async function CoursePage({ params }: Props) {
           ))}
         </div>
 
-        {/* Sidebar: progress + lesson list */}
+        {/* Sidebar */}
         <div>
           <div className="dash-card" style={{ position: 'sticky', top: '24px' }}>
             <h3 className="dash-card__title">Course Progress</h3>
             <div className="course-card__progress" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100} style={{ marginBottom: '8px' }}>
-              <div className="course-card__progress-bar" style={{ width: `${progress}%` }}></div>
+              <div className="course-card__progress-bar" style={{ width: `${progress}%` }} />
             </div>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-light)', marginBottom: '20px' }}>
+            <p style={{ fontSize: '0.82rem', color: 'var(--text-light)', marginBottom: isCourseComplete ? '16px' : '20px' }}>
               {completed} of {total} lessons complete
             </p>
+
+            {isCourseComplete && (
+              <Link
+                href={`/dashboard/training/${course.id}/certificate`}
+                className="btn btn--primary"
+                style={{ width: '100%', textAlign: 'center', marginBottom: '20px', fontSize: '0.875rem' }}
+              >
+                🏅 View Certificate
+              </Link>
+            )}
 
             <ul className="lesson-list">
               {course.lessons.map((lesson, idx) => (

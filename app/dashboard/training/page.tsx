@@ -26,6 +26,10 @@ export default async function TrainingPage() {
     return acc
   }, {})
 
+  const completedCourseIds = COURSES
+    .filter(c => c.status === 'available' && c.lessons.length > 0 && (completedByCourse[c.id] ?? 0) >= c.lessons.length)
+    .map(c => c.id)
+
   return (
     <>
       <div className="dash-page-header">
@@ -34,6 +38,23 @@ export default async function TrainingPage() {
       </div>
 
       <UpgradePrompt currentTier={tier} />
+
+      {completedCourseIds.length > 0 && (
+        <div className="completed-courses-banner">
+          <span className="completed-courses-banner__icon" aria-hidden="true">🏅</span>
+          <span className="completed-courses-banner__text">
+            {completedCourseIds.length} course{completedCourseIds.length !== 1 ? 's' : ''} completed —
+          </span>
+          {completedCourseIds.map(id => {
+            const c = COURSES.find(x => x.id === id)!
+            return (
+              <a key={id} href={`/dashboard/training/${id}/certificate`} className="completed-courses-banner__link">
+                View {c.title} Certificate →
+              </a>
+            )
+          })}
+        </div>
+      )}
 
       <div className="course-grid">
         {COURSES.map(course => (

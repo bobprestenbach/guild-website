@@ -133,7 +133,11 @@ export default async function ResourcesPage() {
         </div>
         <div className="resource-item__action">
           {canDownload ? (
-            <a href={resource.downloadUrl} className="btn btn--primary" style={{ fontSize: '0.82rem', padding: '8px 16px' }}>
+            <a
+              href={`/api/downloads/${resource.id}`}
+              className="btn btn--primary"
+              style={{ fontSize: '0.82rem', padding: '8px 16px' }}
+            >
               Download
             </a>
           ) : (

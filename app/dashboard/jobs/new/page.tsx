@@ -16,7 +16,7 @@ export default async function PostJobPage() {
 
   return (
     <>
-      <div className="dash-page-header">
+      <div className="dash-page-header dash-page-header--flex">
         <div>
           <h1>Post a Job</h1>
           <p>Your listing will appear on the public job board for 30 days.</p>
