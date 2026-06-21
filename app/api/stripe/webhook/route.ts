@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import type Stripe from 'stripe'
 import { stripe } from '@/lib/stripe'
 import { prisma } from '@/lib/prisma'
+import { sendPaymentConfirmationEmail } from '@/lib/email'
 
 export async function POST(req: Request) {
   const body = await req.text()
@@ -52,6 +53,12 @@ export async function POST(req: Request) {
           stripeCustomerId: subscription.customer as string,
         },
       })
+
+      const user = await prisma.user.findUnique({ where: { id: userId }, select: { email: true, name: true } })
+      if (user?.email) {
+        const amount = tier === 'BUSINESS' ? '$99' : '$29'
+        await sendPaymentConfirmationEmail(user.email, user.name ?? '', tier, amount).catch(() => {})
+      }
       break
     }
 

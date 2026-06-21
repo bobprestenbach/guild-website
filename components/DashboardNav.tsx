@@ -6,11 +6,20 @@ import { signOut } from 'next-auth/react'
 import TierBadge from '@/components/TierBadge'
 import type { EffectiveTier } from '@/lib/subscriptions'
 
-const navLinks = [
+interface NavLink {
+  href: string
+  label: string
+  icon: string
+  tiersOnly?: EffectiveTier[]
+}
+
+const navLinks: NavLink[] = [
   { href: '/dashboard', label: 'Home', icon: '🏠' },
   { href: '/dashboard/training', label: 'Training', icon: '🎓' },
   { href: '/dashboard/resources', label: 'Resources', icon: '📁' },
+  { href: '/dashboard/jobs', label: 'Jobs', icon: '💼' },
   { href: '/dashboard/community', label: 'Community', icon: '💬' },
+  { href: '/dashboard/team', label: 'Team', icon: '👥', tiersOnly: ['BUSINESS'] },
   { href: '/dashboard/settings', label: 'Settings', icon: '⚙️' },
 ]
 
@@ -49,21 +58,23 @@ export default function DashboardNav({ userName, userImage, tier }: Props) {
       </div>
 
       <nav className="dash-sidebar__nav" aria-label="Dashboard navigation">
-        {navLinks.map(({ href, label, icon }) => {
-          const isActive = href === '/dashboard'
-            ? pathname === '/dashboard'
-            : pathname.startsWith(href)
-          return (
-            <Link
-              key={href}
-              href={href}
-              className={`dash-sidebar__nav-link${isActive ? ' dash-sidebar__nav-link--active' : ''}`}
-            >
-              <span className="dash-sidebar__nav-icon" aria-hidden="true">{icon}</span>
-              {label}
-            </Link>
-          )
-        })}
+        {navLinks
+          .filter(({ tiersOnly }) => !tiersOnly || tiersOnly.includes(tier))
+          .map(({ href, label, icon }) => {
+            const isActive = href === '/dashboard'
+              ? pathname === '/dashboard'
+              : pathname.startsWith(href)
+            return (
+              <Link
+                key={href}
+                href={href}
+                className={`dash-sidebar__nav-link${isActive ? ' dash-sidebar__nav-link--active' : ''}`}
+              >
+                <span className="dash-sidebar__nav-icon" aria-hidden="true">{icon}</span>
+                {label}
+              </Link>
+            )
+          })}
       </nav>
 
       <div className="dash-sidebar__footer">

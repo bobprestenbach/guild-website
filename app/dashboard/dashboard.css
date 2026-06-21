@@ -796,6 +796,213 @@
   opacity: 0.5;
 }
 
+/* Job board — dashboard */
+.dash-page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.dash-job-row {
+  background: white;
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid rgba(107, 21, 40, 0.1);
+}
+
+.dash-job-row__info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.dash-job-row__title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.dash-job-row__meta {
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+.dash-job-row__status {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+.dash-job-row__status--active {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.dash-job-row__status--closed {
+  background: var(--cream);
+  color: var(--text-light);
+  border: 1px solid var(--parchment);
+}
+
+/* Form styles (shared) */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.form-input {
+  padding: 10px 14px;
+  border: 1.5px solid rgba(107, 21, 40, 0.2);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-family: var(--font-body);
+  color: var(--text);
+  background: white;
+  transition: border-color 0.15s;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--primary);
+}
+
+/* Team management */
+.team-seats-bar {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(107, 21, 40, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.team-seats-bar__label {
+  font-size: 0.92rem;
+  color: var(--text);
+  min-width: 120px;
+}
+
+.team-seats-bar__track {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+}
+
+.team-seats-bar__slot {
+  flex: 1;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(107, 21, 40, 0.1);
+}
+
+.team-seats-bar__slot--used {
+  background: var(--primary);
+}
+
+.team-seats-bar__remaining {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  min-width: 100px;
+  text-align: right;
+}
+
+.team-member-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 28px;
+  border-bottom: 1px solid rgba(107, 21, 40, 0.06);
+}
+
+.team-member-row:last-child {
+  border-bottom: none;
+}
+
+.team-member-row__avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--primary-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.82rem;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.team-member-row__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-member-row__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.team-member-row__name {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.team-member-row__email {
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+.team-member-row__badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--primary);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 640px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .dash-layout {
