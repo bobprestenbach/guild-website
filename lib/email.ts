@@ -88,3 +88,32 @@ export async function sendTeamInviteEmail(to: string, ownerName: string, token: 
     <p style="margin:24px 0 0;font-size:12px;color:#bbb">This invitation expires in 7 days. If you weren't expecting this invitation, you can safely ignore this email.</p>
   `))
 }
+
+export async function sendPartnerInquiryEmail(
+  company: string,
+  contactName: string,
+  contactEmail: string,
+  category: string,
+  message: string,
+) {
+  const adminEmail = process.env.ADMIN_EMAIL
+  if (!adminEmail || !resend) return
+  await resend.emails.send({
+    from: FROM,
+    to: adminEmail,
+    replyTo: contactEmail,
+    subject: `New Partner Inquiry: ${company}`,
+    html: base(`
+      <h1 style="margin:0 0 8px;font-size:22px;color:#4a0f1c">New Partner Inquiry</h1>
+      <p style="margin:0 0 24px;color:#888;font-size:13px;text-transform:uppercase;letter-spacing:0.06em">From the Partners page</p>
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr><td style="padding:10px 0;border-bottom:1px solid #f0e8d0;color:#555;font-size:14px"><strong>Company:</strong> ${company}</td></tr>
+        <tr><td style="padding:10px 0;border-bottom:1px solid #f0e8d0;color:#555;font-size:14px"><strong>Contact:</strong> ${contactName}</td></tr>
+        <tr><td style="padding:10px 0;border-bottom:1px solid #f0e8d0;color:#555;font-size:14px"><strong>Email:</strong> <a href="mailto:${contactEmail}" style="color:#6b1528">${contactEmail}</a></td></tr>
+        <tr><td style="padding:10px 0;border-bottom:1px solid #f0e8d0;color:#555;font-size:14px"><strong>Category:</strong> ${category}</td></tr>
+        <tr><td style="padding:10px 0;color:#555;font-size:14px"><strong>Message:</strong><br><br>${message.replace(/\n/g, '<br>')}</td></tr>
+      </table>
+      <p style="margin:24px 0 0;font-size:13px;color:#999">Reply to this email to respond directly to ${contactName}.</p>
+    `),
+  })
+}

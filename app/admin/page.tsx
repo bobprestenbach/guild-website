@@ -109,6 +109,12 @@ export default async function AdminPage() {
       <div style={{ background: 'var(--cream)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', marginBottom: '24px', boxShadow: 'var(--card-shadow)' }}>
         <div style={{ padding: '16px 24px', borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', color: 'var(--primary-dark)' }}>Newsletter Subscribers</h2>
+          <a
+            href="/admin/export/newsletter"
+            style={{ fontSize: '0.78rem', color: 'var(--primary)', textDecoration: 'none', fontWeight: 500 }}
+          >
+            ↓ Export CSV
+          </a>
           <span style={{ fontSize: '0.78rem', color: 'var(--text-light)' }}>Showing latest {recentSubscribers.length} of {newsletterCount}</span>
         </div>
         <div style={{ overflowX: 'auto' }}>
