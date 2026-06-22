@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/prisma'
 import { getEffectiveTier, tierCanAccess } from '@/lib/subscriptions'
+import { sendJobPostedEmail } from '@/lib/email'
 
 export async function GET() {
   const jobs = await prisma.jobPost.findMany({
@@ -43,6 +44,11 @@ export async function POST(req: Request) {
       expiresAt,
     },
   })
+
+  const user = await prisma.user.findUnique({ where: { id: session.user.id }, select: { email: true, name: true } })
+  if (user?.email) {
+    sendJobPostedEmail(user.email, user.name ?? '', job.title, job.company, job.expiresAt).catch(() => {})
+  }
 
   return NextResponse.json(job, { status: 201 })
 }

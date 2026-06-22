@@ -117,3 +117,28 @@ export async function sendPartnerInquiryEmail(
     `),
   })
 }
+
+export async function sendJobPostedEmail(
+  to: string,
+  name: string,
+  jobTitle: string,
+  company: string,
+  expiresAt: Date,
+) {
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://thehospitalityguild.com'
+  const expiryStr = expiresAt.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+  await send(to, `Your job posting is live: ${jobTitle}`, base(`
+    <h1 style="margin:0 0 8px;font-size:24px;color:#4a0f1c">Your job posting is live.</h1>
+    <p style="margin:0 0 24px;color:#888;font-size:13px;text-transform:uppercase;letter-spacing:0.06em">Guild Job Board</p>
+    <p style="color:#333;line-height:1.7;margin:0 0 16px">Hi ${name}, your listing for <strong>${jobTitle}</strong> at <strong>${company}</strong> is now live on the Guild job board and visible to all members.</p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 24px">
+      <tr><td style="padding:10px 0;border-bottom:1px solid #f0e8d0;color:#555;font-size:14px"><strong>Position:</strong> ${jobTitle}</td></tr>
+      <tr><td style="padding:10px 0;border-bottom:1px solid #f0e8d0;color:#555;font-size:14px"><strong>Company:</strong> ${company}</td></tr>
+      <tr><td style="padding:10px 0;color:#555;font-size:14px"><strong>Expires:</strong> ${expiryStr} (30 days)</td></tr>
+    </table>
+    <p style="color:#333;line-height:1.7;margin:0 0 28px;font-size:13px">You can view or close your listing from the Jobs section of your dashboard.</p>
+    <table cellpadding="0" cellspacing="0"><tr><td style="background:#6b1528;border-radius:4px">
+      <a href="${appUrl}/dashboard/jobs" style="display:inline-block;padding:14px 28px;color:#fff;text-decoration:none;font-size:14px;font-weight:600">View Your Listings →</a>
+    </td></tr></table>
+  `))
+}
