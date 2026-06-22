@@ -1671,3 +1671,48 @@
   text-decoration: underline;
   padding: 0;
 }
+
+/* ==========================================================================
+   Loading Skeleton
+   ========================================================================== */
+
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position: 600px 0; }
+}
+
+.dash-skeleton__header {
+  margin-bottom: 32px;
+}
+
+.dash-skeleton__card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--card-shadow);
+}
+
+.dash-skeleton__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  background: linear-gradient(90deg, var(--parchment) 25%, #ddd5b0 50%, var(--parchment) 75%);
+  background-size: 600px 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+
+.dash-skeleton__line {
+  height: 12px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  background: linear-gradient(90deg, var(--parchment) 25%, #ddd5b0 50%, var(--parchment) 75%);
+  background-size: 600px 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+
+.dash-skeleton__line--sm   { width: 30%; }
+.dash-skeleton__line--md   { width: 55%; }
+.dash-skeleton__line--lg   { width: 70%; height: 20px; border-radius: 8px; }
+.dash-skeleton__line--full { width: 100%; }

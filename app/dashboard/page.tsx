@@ -119,7 +119,7 @@ export default async function DashboardPage({
           <p className="dash-card__text">
             Exclusive deals on POS systems, staffing, scheduling software, and more.
           </p>
-          <Link href="/partners" className="dash-card__link">View Partners →</Link>
+          <Link href="/dashboard/partners" className="dash-card__link">View Partners →</Link>
         </div>
 
         <div className="dash-card">

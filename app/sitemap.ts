@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { prisma } from '@/lib/prisma'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_URL ?? 'https://thehospitalityguild.com'
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://thehospitalityguild.com'
 
   const jobs = await prisma.jobPost.findMany({
     where: { status: 'active', expiresAt: { gt: new Date() } },
