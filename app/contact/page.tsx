@@ -32,7 +32,7 @@ export default function ContactPage() {
               <div className="contact-info-card">
                 <div className="contact-info-card__icon">💬</div>
                 <h3>Community Support</h3>
-                <p>For fastest support, post in the members-only help channel in our Skool community.</p>
+                <p>For fastest support, post in the members-only help channel in our community portal.</p>
                 <Link href="/dashboard/community" className="btn btn--outline-navy" style={{ fontSize: '0.82rem', marginTop: '12px', display: 'inline-block' }}>
                   Go to Community
                 </Link>

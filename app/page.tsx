@@ -102,7 +102,7 @@ export default function HomePage() {
               <div className="feature-card__icon" aria-hidden="true">💬</div>
               <div className="feature-card__content">
                 <h4>Private Manager Community</h4>
-                <p>A members-only Skool community where you can ask questions and get answers from peers.</p>
+                <p>A members-only community where you can ask questions and get answers from peers.</p>
               </div>
             </div>
             <div className="feature-card">

@@ -1,6 +1,6 @@
 # The Hospitality Guild — Project Guide
 
-Membership portal for hospitality managers. Skool-style platform built on Next.js 15 App Router.
+Membership portal for hospitality managers. Built on Next.js 15 App Router.
 
 ## Tech Stack
 
@@ -96,4 +96,3 @@ npm run db:studio    # open Prisma Studio GUI
 - `lib/courses.ts` lesson `videoId` fields are empty — add YouTube video IDs when content is ready
 - `RESOURCE_META` in `app/api/downloads/[resourceId]/route.ts` has `fileUrl: null` — add real file URLs (e.g. S3/R2 presigned URLs)
 - Social links in Footer are `#` — add real URLs when accounts are set up
-- Community links point to `https://www.skool.com/hospitality-guild` — update when Skool group is live

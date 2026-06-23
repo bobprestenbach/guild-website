@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { auth } from '@/auth'
 import { redirect } from 'next/navigation'
 import { getEffectiveTier } from '@/lib/subscriptions'
@@ -22,31 +23,23 @@ export default async function CommunityPage() {
         <div className="dash-card" style={{ gridColumn: '1 / -1', background: 'linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%)', color: 'white', border: 'none' }}>
           <div className="dash-card__icon">💬</div>
           <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', color: 'var(--gold-bright)', marginBottom: '8px' }}>
-            The Guild Community Lives on Skool
+            Your Guild Community Hub
           </h3>
           <p style={{ color: 'rgba(232,223,192,0.85)', marginBottom: '20px', lineHeight: 1.6 }}>
-            Our private community is hosted on Skool — a focused platform built for communities like ours.
-            Discussion forums, resource sharing, regional groups, and monthly live calls — all in one place.
+            Discussion forums, resource sharing, regional groups, and monthly live calls — all built into your membership. Connect with fellow managers, post questions, and share what&apos;s working.
           </p>
-          <a
-            href="https://www.skool.com/hospitality-guild"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn--upgrade"
-          >
-            Open Community →
-          </a>
+          <Link href="/dashboard/community/discussions" className="btn btn--upgrade">
+            Browse Discussions →
+          </Link>
         </div>
 
         <div className="dash-card">
           <div className="dash-card__icon">📅</div>
           <h3 className="dash-card__title">Monthly Live Calls</h3>
           <p className="dash-card__text">
-            Join our next live session with industry experts. Open Q&A format — bring your real challenges.
+            Join our next live session with industry experts. Open Q&amp;A format — bring your real challenges.
           </p>
-          <a href="https://www.skool.com/hospitality-guild" target="_blank" rel="noopener noreferrer" className="dash-card__link">
-            View Schedule →
-          </a>
+          <Link href="/dashboard/webinars" className="dash-card__link">View Schedule →</Link>
         </div>
 
         <div className="dash-card">
@@ -55,20 +48,16 @@ export default async function CommunityPage() {
           <p className="dash-card__text">
             Connect with Guild members in your area for locally relevant conversations and referrals.
           </p>
-          <a href="https://www.skool.com/hospitality-guild" target="_blank" rel="noopener noreferrer" className="dash-card__link">
-            Find Your Region →
-          </a>
+          <Link href="/dashboard/community/regional" className="dash-card__link">Find Your Region →</Link>
         </div>
 
         <div className="dash-card">
           <div className="dash-card__icon">🏆</div>
-          <h3 className="dash-card__title">Leaderboard</h3>
+          <h3 className="dash-card__title">Active Members</h3>
           <p className="dash-card__text">
-            See the most active members this month — share more, earn points, and climb the community leaderboard.
+            See the most active contributors this month — share more, help others, and build your reputation in the Guild.
           </p>
-          <a href="https://www.skool.com/hospitality-guild" target="_blank" rel="noopener noreferrer" className="dash-card__link">
-            View Leaderboard →
-          </a>
+          <Link href="/dashboard/community/members" className="dash-card__link">View Members →</Link>
         </div>
 
         {tier === 'EXPLORER' && (

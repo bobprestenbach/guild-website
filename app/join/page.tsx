@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const faqItems = [
   {
     question: 'What is The Hospitality Guild?',
-    answer: 'The Hospitality Guild is a membership community and professional development platform built exclusively for hospitality managers and business owners. We provide online training courses, a private community on Skool, downloadable templates and SOPs, live workshops, and access to exclusive partner discounts — all in one place.',
+    answer: 'The Hospitality Guild is a membership community and professional development platform built exclusively for hospitality managers and business owners. We provide online training courses, a private member community, downloadable templates and SOPs, live workshops, and access to exclusive partner discounts — all in one place.',
   },
   {
     question: 'Who is this for?',
@@ -32,7 +32,7 @@ const faqItems = [
   },
   {
     question: 'Do you offer team or business plans?',
-    answer: "Yes — our Business plan at $99/month includes up to 5 team seat accounts, a manager dashboard to track team progress, priority support, and a personal onboarding call with our team. If you have a larger organization with more than 5 managers, contact us directly and we'll build you a custom plan.",
+    answer: "Yes — our Business plan at $99/month includes up to 5 team seat accounts, a manager dashboard to track team progress, priority support, and a personal onboarding call with our team. If you have a larger organization with more than 5 managers, <a href=\"/contact\">contact us directly</a> and we'll build you a custom plan.",
   },
 ]
 
