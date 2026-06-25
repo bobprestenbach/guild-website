@@ -4,6 +4,7 @@ import './globals.css'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import ScrollToTop from '@/components/ScrollToTop'
+import Providers from '@/components/Providers'
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -17,7 +18,7 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
-const baseUrl = process.env.NEXT_PUBLIC_URL ?? 'https://thehospitalityguild.com'
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://thehospitalityguild.com'
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -55,10 +56,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body>
-        <Nav />
-        {children}
-        <Footer />
-        <ScrollToTop />
+        <Providers>
+          <Nav />
+          {children}
+          <Footer />
+          <ScrollToTop />
+        </Providers>
       </body>
     </html>
   )

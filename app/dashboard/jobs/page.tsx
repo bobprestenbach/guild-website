@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import { getEffectiveTier, tierCanAccess } from '@/lib/subscriptions'
 import Link from 'next/link'
+import CloseJobButton from './CloseJobButton'
 
 export const metadata: Metadata = { title: 'Job Board' }
 
@@ -12,6 +13,13 @@ function daysAgo(date: Date) {
   if (diff === 0) return 'Today'
   if (diff === 1) return 'Yesterday'
   return `${diff}d ago`
+}
+
+function daysRemaining(date: Date) {
+  const diff = Math.ceil((date.getTime() - Date.now()) / 86400000)
+  if (diff <= 0) return 'Expired'
+  if (diff === 1) return '1d left'
+  return `${diff}d left`
 }
 
 export default async function DashboardJobsPage() {
@@ -68,11 +76,17 @@ export default async function DashboardJobsPage() {
               <div key={job.id} className="dash-job-row">
                 <div className="dash-job-row__info">
                   <span className="dash-job-row__title">{job.title}</span>
-                  <span className="dash-job-row__meta">{job.company} · {job.location} · Posted {daysAgo(job.createdAt)}</span>
+                  <span className="dash-job-row__meta">
+                    {job.company} · {job.location} · Posted {daysAgo(job.createdAt)}
+                    {job.status === 'active' && ` · ${daysRemaining(job.expiresAt)}`}
+                  </span>
                 </div>
-                <span className={`dash-job-row__status dash-job-row__status--${job.status}`}>
-                  {job.status}
-                </span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
+                  {job.status === 'active' && <CloseJobButton jobId={job.id} />}
+                  <span className={`dash-job-row__status dash-job-row__status--${job.status}`}>
+                    {job.status}
+                  </span>
+                </div>
               </div>
             ))}
           </div>

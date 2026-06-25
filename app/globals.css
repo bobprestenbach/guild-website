@@ -1508,135 +1508,6 @@ p:last-child { margin-bottom: 0; }
   margin: 0;
 }
 
-.skool-preview {
-  padding: var(--section-padding);
-  background-color: var(--cream);
-}
-
-.skool-mockup {
-  max-width: 820px;
-  margin: 0 auto;
-  background: var(--primary);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  border: 2px solid var(--gold);
-  box-shadow: 0 24px 64px rgba(74,15,28,0.30);
-}
-
-.skool-mockup__bar {
-  background-color: var(--primary-dark);
-  padding: 12px 20px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border-bottom: 1px solid rgba(184,148,42,0.2);
-}
-
-.skool-mockup__dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
-
-.skool-mockup__dot:nth-child(1) { background-color: #ff5f57; }
-.skool-mockup__dot:nth-child(2) { background-color: #febc2e; }
-.skool-mockup__dot:nth-child(3) { background-color: #28c840; }
-
-.skool-mockup__url {
-  flex: 1;
-  background-color: rgba(242,236,216,0.06);
-  border: 1px solid rgba(184,148,42,0.2);
-  border-radius: 4px;
-  padding: 4px 12px;
-  font-size: 0.8rem;
-  color: rgba(242,236,216,0.5);
-  margin-left: 8px;
-}
-
-.skool-mockup__body {
-  padding: 28px;
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 20px;
-  min-height: 320px;
-}
-
-.skool-mockup__sidebar {
-  background-color: rgba(242,236,216,0.04);
-  border-radius: var(--radius);
-  padding: 16px;
-  border: 1px solid rgba(184,148,42,0.15);
-}
-
-.skool-mockup__sidebar-item {
-  padding: 10px 12px;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  color: rgba(242,236,216,0.7);
-  margin-bottom: 4px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.skool-mockup__sidebar-item.active {
-  background-color: var(--gold);
-  color: var(--primary-dark);
-  font-weight: 600;
-}
-
-.skool-mockup__main {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.skool-mockup__post {
-  background-color: rgba(242,236,216,0.06);
-  border: 1px solid rgba(184,148,42,0.15);
-  border-radius: var(--radius);
-  padding: 16px;
-}
-
-.skool-mockup__post-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-
-.skool-mockup__avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color: var(--gold);
-  border: 1px solid var(--gold-bright);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--primary-dark);
-}
-
-.skool-mockup__post-meta {
-  font-size: 0.8rem;
-  color: rgba(242,236,216,0.45);
-}
-
-.skool-mockup__post-title {
-  font-size: 0.85rem;
-  color: var(--cream);
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.skool-mockup__post-text {
-  font-size: 0.78rem;
-  color: rgba(242,236,216,0.5);
-}
-
 /* ==========================================================================
    PARTNERS PAGE
    ========================================================================== */
@@ -2229,14 +2100,6 @@ p:last-child { margin-bottom: 0; }
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .skool-mockup__body {
-    grid-template-columns: 1fr;
-  }
-
-  .skool-mockup__sidebar {
-    display: none;
-  }
-
   .guarantee-banner {
     flex-direction: column;
     text-align: center;
@@ -2671,5 +2534,147 @@ p:last-child { margin-bottom: 0; }
   }
   .newsletter-form__input {
     min-width: 0;
+  }
+}
+
+/* ==========================================================================
+   Blog Post Detail Page
+   ========================================================================== */
+
+.blog-post-body {
+  margin-bottom: 48px;
+}
+
+.blog-post-body__p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.blog-post-body__heading {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--primary-dark);
+  margin: 40px 0 16px;
+  padding-top: 4px;
+  border-top: 2px solid var(--border);
+}
+
+.blog-post-body__list {
+  margin: 0 0 24px 0;
+  padding-left: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.blog-post-body__list li {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text);
+  padding-left: 24px;
+  position: relative;
+}
+
+.blog-post-body__list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 0.9rem;
+  top: 1px;
+}
+
+.blog-post-cta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  flex-wrap: wrap;
+}
+
+.blog-post-cta__icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.blog-post-cta h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--gold-bright);
+  margin-bottom: 6px;
+}
+
+.blog-post-cta p {
+  font-size: 0.9rem;
+  color: rgba(232, 223, 192, 0.85);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.blog-post-cta > div {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* ==========================================================================
+   Contact Page
+   ========================================================================== */
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+.contact-layout__info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-info-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  box-shadow: var(--card-shadow);
+}
+
+.contact-info-card__icon {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.contact-info-card h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--primary-dark);
+  margin-bottom: 6px;
+}
+
+.contact-info-card p {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.contact-layout__form {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px 40px;
+  box-shadow: var(--card-shadow);
+}
+
+@media (max-width: 900px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
   }
 }

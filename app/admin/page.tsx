@@ -30,6 +30,7 @@ export default async function AdminPage() {
     newsletterCount,
     recentUsers,
     recentJobs,
+    recentSubscribers,
   ] = await Promise.all([
     prisma.user.count(),
     prisma.membership.count({ where: { tier: 'MEMBER', stripeCurrentPeriodEnd: { gt: now } } }),
@@ -46,6 +47,11 @@ export default async function AdminPage() {
       orderBy: { createdAt: 'desc' },
       take: 5,
       select: { id: true, title: true, company: true, location: true, createdAt: true },
+    }),
+    prisma.newsletterSubscriber.findMany({
+      orderBy: { subscribedAt: 'desc' },
+      take: 20,
+      select: { id: true, email: true, name: true, subscribedAt: true },
     }),
   ])
 
@@ -93,6 +99,43 @@ export default async function AdminPage() {
               ))}
               {recentUsers.length === 0 && (
                 <tr><td colSpan={3} style={{ padding: '24px', textAlign: 'center', color: 'var(--text-light)' }}>No users yet.</td></tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Newsletter subscribers */}
+      <div style={{ background: 'var(--cream)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', marginBottom: '24px', boxShadow: 'var(--card-shadow)' }}>
+        <div style={{ padding: '16px 24px', borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', color: 'var(--primary-dark)' }}>Newsletter Subscribers</h2>
+          <a
+            href="/admin/export/newsletter"
+            style={{ fontSize: '0.78rem', color: 'var(--primary)', textDecoration: 'none', fontWeight: 500 }}
+          >
+            ↓ Export CSV
+          </a>
+          <span style={{ fontSize: '0.78rem', color: 'var(--text-light)' }}>Showing latest {recentSubscribers.length} of {newsletterCount}</span>
+        </div>
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.875rem' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid var(--border)' }}>
+                {['Email', 'Name', 'Subscribed'].map(h => (
+                  <th key={h} style={{ textAlign: 'left', padding: '10px 24px', color: 'var(--text-light)', fontWeight: 600, fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {recentSubscribers.map(s => (
+                <tr key={s.id} style={{ borderBottom: '1px solid rgba(184,148,42,0.1)' }}>
+                  <td style={{ padding: '12px 24px', color: 'var(--text)' }}>{s.email}</td>
+                  <td style={{ padding: '12px 24px', color: 'var(--text-light)' }}>{s.name ?? '—'}</td>
+                  <td style={{ padding: '12px 24px', color: 'var(--text-light)' }}>{s.subscribedAt.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</td>
+                </tr>
+              ))}
+              {recentSubscribers.length === 0 && (
+                <tr><td colSpan={3} style={{ padding: '24px', textAlign: 'center', color: 'var(--text-light)' }}>No subscribers yet.</td></tr>
               )}
             </tbody>
           </table>

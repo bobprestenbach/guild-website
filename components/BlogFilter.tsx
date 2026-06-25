@@ -1,57 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-
-const posts = [
-  {
-    category: 'management',
-    icon: '📊',
-    badge: 'Management',
-    readTime: '6 min read',
-    title: 'How to Reduce Staff Turnover in Your Restaurant',
-    excerpt: "Turnover doesn't start on a person's last day — it starts in the first week. Here are the retention strategies that actually move the needle.",
-  },
-  {
-    category: 'training',
-    icon: '✅',
-    badge: 'Training',
-    readTime: '8 min read',
-    title: "New Hire Onboarding: A Complete Manager's Checklist",
-    excerpt: "The first 30 days determine whether someone stays or goes. This checklist covers everything you should be doing — and most managers aren't.",
-  },
-  {
-    category: 'management',
-    icon: '🤝',
-    badge: 'Management',
-    readTime: '5 min read',
-    title: "How to Handle Difficult Guests Without Losing Your Cool",
-    excerpt: "Every manager has a story. The ones who handle it best aren't born with thicker skin — they have a framework. Here's the one that works.",
-  },
-  {
-    category: 'operations',
-    icon: '💸',
-    badge: 'Operations',
-    readTime: '7 min read',
-    title: 'The Real Cost of Employee Turnover in Hospitality',
-    excerpt: 'Most operators underestimate it by half. When you factor in recruiting, training, lost productivity, and guest experience impact, the number is staggering.',
-  },
-  {
-    category: 'training',
-    icon: '🎓',
-    badge: 'Training',
-    readTime: '9 min read',
-    title: 'Building a Training Culture That Actually Sticks',
-    excerpt: "One-time orientation isn't training — it's paperwork. A real training culture requires buy-in from leadership, consistency, and the right tools. Here's how to build it.",
-  },
-  {
-    category: 'culture',
-    icon: '⭐',
-    badge: 'Culture',
-    readTime: '6 min read',
-    title: 'What Great Hospitality Managers Do Differently',
-    excerpt: "After studying hundreds of top operators, the patterns are clear. The best managers aren't the most experienced — they share a specific set of habits and mindsets.",
-  },
-]
+import Link from 'next/link'
+import { BLOG_POSTS } from '@/lib/blog'
 
 const filterLabels: Record<string, string> = {
   all: 'All',
@@ -64,7 +15,7 @@ const filterLabels: Record<string, string> = {
 export default function BlogFilter() {
   const [active, setActive] = useState('all')
 
-  const visible = posts.filter(p => active === 'all' || p.category === active)
+  const visible = BLOG_POSTS.filter(p => active === 'all' || p.category === active)
 
   return (
     <>
@@ -81,8 +32,8 @@ export default function BlogFilter() {
         ))}
       </div>
       <div className="blog-grid">
-        {visible.map((post, i) => (
-          <article key={i} className="blog-card" data-category={post.category}>
+        {visible.map(post => (
+          <article key={post.slug} className="blog-card" data-category={post.category}>
             <div className="blog-card__image" aria-hidden="true">
               <div className="blog-card__image-icon">{post.icon}</div>
               <div className="blog-card__image-overlay"></div>
@@ -94,7 +45,7 @@ export default function BlogFilter() {
               </div>
               <h3>{post.title}</h3>
               <p>{post.excerpt}</p>
-              <a href="#" className="blog-card__link">Read More &rarr;</a>
+              <Link href={`/blog/${post.slug}`} className="blog-card__link">Read More &rarr;</Link>
             </div>
           </article>
         ))}

@@ -26,7 +26,7 @@ export default function CommunityPage() {
           <SectionHeader
             id="features-heading"
             title="What the Community Looks Like"
-            subtitle="Our private Skool community is built around the way hospitality professionals actually work — fast, practical, and always on."
+            subtitle="The Guild community is built around the way hospitality professionals actually work — fast, practical, and always on."
           />
           <div className="grid-2">
             <div className="community-feature">
@@ -156,56 +156,44 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      {/* Skool Preview Mockup */}
-      <section className="skool-preview section" aria-labelledby="preview-heading">
+      {/* Platform Preview */}
+      <section className="section" aria-labelledby="preview-heading">
         <div className="container">
           <SectionHeader
             id="preview-heading"
-            title="A Peek Inside the Community"
-            subtitle="The Guild community lives on Skool — a clean, focused platform built for communities like ours. Here's what it looks like."
+            title="Everything in One Place"
+            subtitle="The Guild is a fully integrated platform — community, training, resources, and events all live together inside your dashboard."
           />
-          <div className="skool-mockup" role="img" aria-label="Preview of the Guild community interface">
-            <div className="skool-mockup__bar">
-              <div className="skool-mockup__dot"></div>
-              <div className="skool-mockup__dot"></div>
-              <div className="skool-mockup__dot"></div>
-              <div className="skool-mockup__url">skool.com/hospitality-guild</div>
+          <div className="grid-3">
+            <div className="card">
+              <div className="card__icon" aria-hidden="true">💬</div>
+              <h3 className="card__title">Discussion Forums</h3>
+              <p className="card__text">Organized channels for every topic — staffing, training, operations, leadership, and more. Post a question, get real answers fast.</p>
             </div>
-            <div className="skool-mockup__body">
-              <div className="skool-mockup__sidebar">
-                <div className="skool-mockup__sidebar-item active">💬 &nbsp;Community</div>
-                <div className="skool-mockup__sidebar-item">🎓 &nbsp;Classroom</div>
-                <div className="skool-mockup__sidebar-item">📅 &nbsp;Events</div>
-                <div className="skool-mockup__sidebar-item">👥 &nbsp;Members</div>
-                <div className="skool-mockup__sidebar-item">📚 &nbsp;Resources</div>
-                <div className="skool-mockup__sidebar-item">📍 &nbsp;Regional</div>
-              </div>
-              <div className="skool-mockup__main">
-                <div className="skool-mockup__post">
-                  <div className="skool-mockup__post-header">
-                    <div className="skool-mockup__avatar">SM</div>
-                    <div className="skool-mockup__post-meta">Sarah M. &nbsp;·&nbsp; 42 minutes ago</div>
-                  </div>
-                  <div className="skool-mockup__post-title">Best new hire onboarding tip I&apos;ve used this year 🔥</div>
-                  <div className="skool-mockup__post-text">Started using the buddy system from last month&apos;s webinar and turnover in the first 30 days dropped by half...</div>
-                </div>
-                <div className="skool-mockup__post">
-                  <div className="skool-mockup__post-header">
-                    <div className="skool-mockup__avatar">JR</div>
-                    <div className="skool-mockup__post-meta">James R. &nbsp;·&nbsp; 1 hour ago</div>
-                  </div>
-                  <div className="skool-mockup__post-title">Question: How do you handle back-to-back double shifts during holidays?</div>
-                  <div className="skool-mockup__post-text">We&apos;re heading into summer and I need a better rotation system. What&apos;s working for your team?</div>
-                </div>
-                <div className="skool-mockup__post">
-                  <div className="skool-mockup__post-header">
-                    <div className="skool-mockup__avatar">PK</div>
-                    <div className="skool-mockup__post-meta">Priya K. &nbsp;·&nbsp; 2 hours ago</div>
-                  </div>
-                  <div className="skool-mockup__post-title">Just earned my Front of House Excellence certification! 🎓</div>
-                  <div className="skool-mockup__post-text">The upselling module alone changed how my team approaches every table. 12% increase in average check size this month.</div>
-                </div>
-              </div>
+            <div className="card">
+              <div className="card__icon" aria-hidden="true">🎓</div>
+              <h3 className="card__title">Integrated Training</h3>
+              <p className="card__text">Your training library and community exist side-by-side. Share what you learned from a course and start a discussion in one click.</p>
+            </div>
+            <div className="card">
+              <div className="card__icon" aria-hidden="true">📅</div>
+              <h3 className="card__title">Events &amp; Webinars</h3>
+              <p className="card__text">Monthly live sessions are listed in your dashboard. RSVP, join live, or catch the replay — all without leaving the platform.</p>
+            </div>
+            <div className="card">
+              <div className="card__icon" aria-hidden="true">📍</div>
+              <h3 className="card__title">Regional Groups</h3>
+              <p className="card__text">Connect with members in your market. Local conversations, regional referrals, and occasional in-person meetups.</p>
+            </div>
+            <div className="card">
+              <div className="card__icon" aria-hidden="true">📚</div>
+              <h3 className="card__title">Shared Resource Library</h3>
+              <p className="card__text">Members share templates, SOPs, and tools in the community. If it&apos;s worked for them, it&apos;s available for you.</p>
+            </div>
+            <div className="card">
+              <div className="card__icon" aria-hidden="true">👥</div>
+              <h3 className="card__title">Member Directory</h3>
+              <p className="card__text">Browse Guild members by role, region, or specialty. Reach out directly, build your hospitality network, find mentors.</p>
             </div>
           </div>
         </div>

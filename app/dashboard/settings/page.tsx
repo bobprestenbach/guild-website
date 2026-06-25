@@ -5,6 +5,7 @@ import { prisma } from '@/lib/prisma'
 import { getEffectiveTier, tierLabel } from '@/lib/subscriptions'
 import TierBadge from '@/components/TierBadge'
 import BillingButton from './BillingButton'
+import UpdateNameForm from './UpdateNameForm'
 import Link from 'next/link'
 
 export const metadata: Metadata = { title: 'Account Settings' }
@@ -38,7 +39,7 @@ export default async function SettingsPage() {
           <div className="settings-card__body">
             <div className="settings-row">
               <span className="settings-row__label">Name</span>
-              <span className="settings-row__value">{session.user.name ?? '—'}</span>
+              <UpdateNameForm currentName={session.user.name ?? ''} />
             </div>
             <div className="settings-row">
               <span className="settings-row__label">Email</span>

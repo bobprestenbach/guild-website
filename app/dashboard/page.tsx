@@ -109,7 +109,7 @@ export default async function DashboardPage({
             <p className="dash-card__text">
               <strong>Next session:</strong> Managing Seasonal Staffing Surges — join live or catch the replay.
             </p>
-            <a href="#" className="dash-card__link">View Schedule →</a>
+            <Link href="/dashboard/webinars" className="dash-card__link">View Schedule →</Link>
           </div>
         )}
 
@@ -119,7 +119,7 @@ export default async function DashboardPage({
           <p className="dash-card__text">
             Exclusive deals on POS systems, staffing, scheduling software, and more.
           </p>
-          <Link href="/partners" className="dash-card__link">View Partners →</Link>
+          <Link href="/dashboard/partners" className="dash-card__link">View Partners →</Link>
         </div>
 
         <div className="dash-card">
