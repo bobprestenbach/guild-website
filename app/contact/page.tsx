@@ -27,7 +27,7 @@ export default function ContactPage() {
               <div className="contact-info-card">
                 <div className="contact-info-card__icon">📧</div>
                 <h3>Email</h3>
-                <p>hello@thehospitalityguild.com</p>
+                <p>hello@thehospitaityguild.com</p>
               </div>
               <div className="contact-info-card">
                 <div className="contact-info-card__icon">💬</div>
