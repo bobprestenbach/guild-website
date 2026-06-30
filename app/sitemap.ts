@@ -9,7 +9,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     where: { status: 'active', expiresAt: { gt: new Date() } },
     select: { createdAt: true },
     orderBy: { createdAt: 'desc' },
-  })
+  }).catch(() => [])
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },
