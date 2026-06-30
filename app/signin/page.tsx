@@ -5,6 +5,8 @@ export const metadata: Metadata = {
   title: 'Sign In',
 }
 
+export const dynamic = 'force-dynamic'
+
 export default function SignInPage({
   searchParams,
 }: {

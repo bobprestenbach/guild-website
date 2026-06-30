@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   description: 'Browse hospitality management jobs posted by Guild members.',
 }
 
+export const dynamic = 'force-dynamic'
+
 const roleColors: Record<string, string> = {
   'FOH Manager': '#2563eb',
   'BOH Manager': '#7c3aed',
