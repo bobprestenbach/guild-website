@@ -39,7 +39,7 @@ export default function Footer() {
               <li><Link href="/partners" className="footer__link">Become a Partner</Link></li>
               <li><Link href="/community" className="footer__link">Join the Community</Link></li>
               <li><Link href="/about" className="footer__link">Our Story</Link></li>
-              <li><a href="mailto:hello@thehospitaityguild.com" className="footer__link">Contact Us</a></li>
+              <li><a href="mailto:hello@thehospitalityguild.com" className="footer__link">Contact Us</a></li>
             </ul>
           </div>
         </div>

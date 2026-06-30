@@ -41,7 +41,7 @@ postgresql://user:pass@ep-xxx.us-east-2.aws.neon.tech/neondb?sslmode=require
    - Under **Authorized redirect URIs**, add:
 
 ```
-https://thehospitaityguild.com/api/auth/callback/google
+https://thehospitalityguild.com/api/auth/callback/google
 ```
 
 4. Click **Create** — copy these two values:
@@ -109,7 +109,7 @@ STRIPE_WEBHOOK_SECRET           = whsec_... (add after Step 5)
 STRIPE_MEMBER_PRICE_ID          = price_... (from Step 3)
 STRIPE_BUSINESS_BASE_PRICE_ID   = price_... (from Step 3)
 STRIPE_BUSINESS_SEAT_PRICE_ID   = price_... (from Step 3)
-NEXT_PUBLIC_APP_URL             = https://thehospitaityguild.com
+NEXT_PUBLIC_APP_URL             = https://thehospitalityguild.com
 ```
 
 Generate `AUTH_SECRET` in your terminal:
@@ -125,7 +125,7 @@ openssl rand -base64 32
 ## Step 5 — Stripe Webhook
 
 1. Go to **Stripe → Developers → Webhooks → Add endpoint**
-2. Endpoint URL: `https://thehospitaityguild.com/api/stripe/webhook`
+2. Endpoint URL: `https://thehospitalityguild.com/api/stripe/webhook`
 3. Select these four events:
    - `checkout.session.completed`
    - `invoice.payment_succeeded`
@@ -164,7 +164,7 @@ Expected output:
 
 ## Step 7 — GoDaddy DNS
 
-1. Log in to **GoDaddy.com → My Products → DNS** for `thehospitaityguild.com`
+1. Log in to **GoDaddy.com → My Products → DNS** for `thehospitalityguild.com`
 2. Add or update these two records:
 
 | Type | Name | Value | TTL |
@@ -172,7 +172,7 @@ Expected output:
 | A | `@` | `76.76.21.21` | 600 |
 | CNAME | `www` | `cname.vercel-dns.com` | 3600 |
 
-3. In **Vercel → Project → Settings → Domains**, add `thehospitaityguild.com`
+3. In **Vercel → Project → Settings → Domains**, add `thehospitalityguild.com`
 4. Vercel will verify DNS and auto-provision SSL — typically takes 5–30 minutes
 
 ---

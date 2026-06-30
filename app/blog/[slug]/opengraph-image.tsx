@@ -72,7 +72,7 @@ export default async function BlogPostOgImage({ params }: Props) {
 
           {/* Byline */}
           <div style={{ fontSize: '17px', color: 'rgba(232,223,192,0.65)' }}>
-            thehospitaityguild.com/blog
+            thehospitalityguild.com/blog
           </div>
         </div>
 
